@@ -4,4 +4,18 @@ https://www.arduino.cc/
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 # 3. CH341SER download
 https://www.wch-ic.com/downloads/ch341ser_exe.html
-# 4. 
+# 4. Blink Code
+'''
+#define LED D5
+
+void setup() {
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED, HIGH); 
+  delay(1000);
+  digitalWrite(LED, LOW);
+  delay(1000);
+}
+'''
