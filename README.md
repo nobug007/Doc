@@ -24,8 +24,8 @@ void loop() {
 #include <ESP8266WiFi.h>
 #define LED D5
 
-const char *ssid = "nobug_home";
-const char *password = "bang8813";
+const char *ssid = "********";
+const char *password = "********";
  
 WiFiServer server(80);
 
