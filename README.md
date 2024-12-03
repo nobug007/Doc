@@ -63,7 +63,9 @@ void loop() {
   client.setTimeout(5000);
   
   String request = client.readStringUntil('\r');
- 
+  if ( request.length() <=0 ) return;
+  Serial.print(request);
+
   if(request.indexOf("ledon") > -1) {
     digitalWrite(LED, HIGH);
   }
@@ -73,7 +75,6 @@ void loop() {
   
   client.flush();
   htmlPage(client);
-  client.stop();
   Serial.println(" .... 끝> ");
 }
 
