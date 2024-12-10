@@ -11,6 +11,7 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 # 4. Blink Code
 ```
 #define LED D5
+#define INTERVAL 1000
 
 void setup() {
   pinMode(LED, OUTPUT);
@@ -18,9 +19,9 @@ void setup() {
 
 void loop() {
   digitalWrite(LED, HIGH); 
-  delay(1000);
+  delay(INTERVAL);
   digitalWrite(LED, LOW);
-  delay(1000);
+  delay(INTERVAL);
 }
 ```
 # 5. LED WiFi Code
