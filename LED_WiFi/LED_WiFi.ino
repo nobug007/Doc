@@ -36,22 +36,23 @@ void loop() {
 
   if(!client) return;
 
-  Serial.print(" < 페이지 시작");
-  client.setTimeout(5000);
-  
-  String request = client.readStringUntil('\r');
+  Serial.print(" < 페이지 시작 ...");
  
+  String request = client.readStringUntil('\r');
+  if ( request.length() <=0 ) return;
+  
+  Serial.print(request);
+  
   if(request.indexOf("ledon") > -1) {
     digitalWrite(LED, HIGH);
   }
   else if(request.indexOf("ledoff") > -1) {
     digitalWrite(LED, LOW);
   }
-  
+
   client.flush();
   htmlPage(client);
-  client.stop();
-  Serial.println(" .... 끝> ");
+  Serial.println(" ... 끝> ");
 }
 
 void htmlPage(WiFiClient client) {
@@ -59,15 +60,18 @@ void htmlPage(WiFiClient client) {
   client.print("Content-Type: text/html\r\n\r\n");
   client.print("<!DOCTYPE HTML>");
   client.print("<html>");
+  client.print("<head>");
+  client.print("<title>LED On Off</title>");
+  client.print("</head>");
   client.print("<body>");
   client.print("<br>");
-  client.print("<h1 align=\"center\">LED On Off Test</h1>");
+  client.print("<h1 align='center'>LED On Off Test</h1>");
   client.print("<br>");
-  client.print("<a href='/ledon'><h2 align=\"center\">ON</h2></a>");
+  client.print("<a href='/ledon'><h2 align='center'>ON</h2></a>");
   client.print("<br>");
-  client.print("<a href='/ledoff'><h2 align=\"center\">OFF</h2></a>");
+  client.print("<a href='/ledoff'><h2 align='center'>OFF</h2></a>");
   client.print("<br>");
-  client.print("<h2 align=\"center\">");
+  client.print("<h2 align='center'>");
   client.print("LED Status: ");
   client.print((digitalRead(LED)) ? "ON" : "OFF");
   client.print("</h2>");
